@@ -1,15 +1,14 @@
+
+import ChatClient from "./chat-client";
+import { cookies } from 'next/headers'
 import { fetchBots } from "../lib/fetchBots";
 import { fetchChat } from "../lib/fetchChat";
-import ChatClient from "./chat_client";
-import { cookies } from 'next/headers'
-
 
 export default async function Chat() {
     
-    getExistingChatData()
     const bots = await fetchBots();
     const [isChatDataFound, chatData] = await getExistingChatData()
-    
+
     let messages = [];
     let activeBotSlug = "";
     if(isChatDataFound){

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-export async function fetchChat(userRef, chatRef) {
+export async function fetchChat(userRef:string, chatRef:string) {
     try {
       const response = await fetch(`http://localhost:8081/chats/${userRef}/${chatRef}`, {
         method: 'GET',
