@@ -1,14 +1,18 @@
-
-
 interface Props {
   value: string;
   onChange: (val: string) => void;
   onSend: () => void;
+  messageSending: boolean;
 }
 
-export default function ChatInput({ value, onChange, onSend }: Props) {
+export default function ChatInput({
+  value,
+  onChange,
+  onSend,
+  messageSending,
+}: Props) {
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       onSend();
     }
   };
@@ -22,6 +26,7 @@ export default function ChatInput({ value, onChange, onSend }: Props) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyUp={handleKeyUp}
+        disabled={messageSending}
       />
       <button
         onClick={onSend}

@@ -1,45 +1,47 @@
-
-import ChatClient from "./chat-client";
-import { cookies } from 'next/headers'
-import { fetchBots } from "../lib/fetchBots";
-import { fetchChat } from "../lib/fetchChat";
+import ChatClient from './chat-client';
+import { cookies } from 'next/headers';
+import { fetchBots } from '../lib/fetchBots';
+import { fetchChat } from '../lib/fetchChat';
 
 export default async function Chat() {
-    
-    const bots = await fetchBots();
-    const [isChatDataFound, chatData] = await getExistingChatData()
+  const bots = await fetchBots();
+  const [isChatDataFound, chatData] = await getExistingChatData();
 
-    let messages = [];
-    let activeBotSlug = "";
-    if(isChatDataFound){
-        messages = chatData.messages
-        activeBotSlug = chatData.bot_slug
-    }
+  let messages = [];
+  let activeBotSlug = '';
+  if (isChatDataFound) {
+    messages = chatData.messages;
+    activeBotSlug = chatData.bot_slug;
+  }
 
-    return <ChatClient bots={bots} messages={messages} activeBotSlug={activeBotSlug} />
+  return (
+    <ChatClient bots={bots} messages={messages} activeBotSlug={activeBotSlug} />
+  );
 }
 
-const getExistingChatData = async() => {
+const getExistingChatData = async () => {
+  let existingChatData = [false, {}];
+  const cookieStore = await cookies();
+  const existingChatReferences = cookieStore.get('cd');
 
-    let existingChatData = [false, {}]
-    const cookieStore = await cookies()
-    const existingChatReferences = cookieStore.get('cd')
+  if (
+    typeof existingChatReferences === 'undefined' ||
+    typeof existingChatReferences.value === 'undefined'
+  ) {
+    existingChatData = [false, {}];
+    return existingChatData;
+  }
 
-    if(typeof existingChatReferences === "undefined" || typeof existingChatReferences.value === "undefined"){
-        existingChatData = [false, {} ]
-        return existingChatData
-    }
+  let chatCookieData;
 
-    let chatCookieData
+  try {
+    chatCookieData = JSON.parse(existingChatReferences.value);
+  } catch (err) {
+    existingChatData = [false, { error: err }];
+    return existingChatData;
+  }
 
-    try {
-        chatCookieData = JSON.parse(existingChatReferences.value)
-    } catch (err) {
-        existingChatData = [false, {}]
-        return existingChatData
-    }
+  const chatData = await fetchChat(chatCookieData.u, chatCookieData.c);
 
-    const chatData = await fetchChat(chatCookieData.u, chatCookieData.c)
-    
-    return [true, chatData]
-}
+  return [true, chatData];
+};

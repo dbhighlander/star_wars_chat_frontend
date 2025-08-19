@@ -1,15 +1,15 @@
-// components/ChatClient.tsx
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Bot, Message } from "../types";
-import ChatHeader from "./components/chat-header";
-import MessageList from "./components/message-list";
-import ChatInput from "./components/chat-input";
-import ChatToggleButton from "./components/chat-toggle-button";
-import { createChat } from "../lib/createChat";
-import { sendMessage } from "@/app/lib/sendMessage";
-import { assignBotToChat } from "../lib/assignBotToChat";
+import { useEffect, useState } from 'react';
+import { Bot, Message } from '../types';
+import ChatHeader from './components/chat-header';
+import MessageList from './components/message-list';
+import ChatInput from './components/chat-input';
+import ChatToggleButton from './components/chat-toggle-button';
+import { createChat } from '../lib/createChat';
+import { sendMessage } from '@/app/lib/sendMessage';
+import { assignBotToChat } from '../lib/assignBotToChat';
+import { deleteChatDataFromCookie } from '../utils/cookies';
 
 interface Props {
   bots: Bot[];
@@ -17,26 +17,32 @@ interface Props {
   activeBotSlug: string;
 }
 
-export default function ChatClient({ bots: initialBots, messages: initialMessages, activeBotSlug }: Props) {
+export default function ChatClient({
+  bots: initialBots,
+  messages: initialMessages,
+  activeBotSlug,
+}: Props) {
   const [isChatOpen, setChatOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [activeBot, setActiveBot] = useState<Bot>({ slug: "", name: ""});
+  const [activeBot, setActiveBot] = useState<Bot>({ slug: '', name: '' });
   const [bots, setBots] = useState<Bot[]>([]);
-  const [customerMessage, setCustomerMessage] = useState("");
-
+  const [customerMessage, setCustomerMessage] = useState('');
+  const [messageSending, toggleMessageSending] = useState(false);
   useEffect(() => {
-    if (initialMessages.length > 0 && activeBotSlug !== "") {
+    if (initialMessages.length > 0 && activeBotSlug !== '') {
       setMessages(initialMessages);
       loadActiveBot(initialBots, activeBotSlug);
       setChatOpen(true);
     } else {
       setBots(initialBots);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const startChat = async () => {
-    const defaultChatterSlug = "yoda";
+    toggleMessageSending(false);
+    const defaultChatterSlug = 'yoda';
     loadActiveBot(bots, defaultChatterSlug);
     const chatData = await createChat(defaultChatterSlug);
     setMessages(chatData.messages);
@@ -44,15 +50,15 @@ export default function ChatClient({ bots: initialBots, messages: initialMessage
   };
 
   const closeChat = async () => {
+    const closeChatbot = window.confirm('Do you wish to end this chat?');
 
-    const closeChatbot = window.confirm("Do you wish to end this chat?");
-
-    if(!closeChatbot){
-      return false
+    if (!closeChatbot) {
+      return false;
     }
-    let newBots = [...bots]
-    newBots.push(activeBot)
-    setBots(newBots)
+    const newBots = [...bots];
+    newBots.push(activeBot);
+    setBots(newBots);
+    deleteChatDataFromCookie();
     setShowDropdown(false);
     setChatOpen(false);
   };
@@ -69,14 +75,13 @@ export default function ChatClient({ bots: initialBots, messages: initialMessage
       }
     });
 
-    setActiveBot(selected ?? { slug: "", name: "" });
+    setActiveBot(selected ?? { slug: '', name: '' });
     setBots(newBots);
   };
 
-  const selectBot = async(bot: Bot) => {
+  const selectBot = async (bot: Bot) => {
+    const systemMessage = await assignBotToChat(bot.slug);
 
-    const systemMessage = await assignBotToChat(bot.slug)
-    
     const oldActiveBot = { ...activeBot };
     setActiveBot(bot);
 
@@ -86,18 +91,28 @@ export default function ChatClient({ bots: initialBots, messages: initialMessage
     }
     setBots(updatedBots);
 
-    setMessages([...messages, { message: systemMessage, type: "system" }]);
+    setMessages([...messages, { message: systemMessage, type: 'system' }]);
     setShowDropdown(false);
   };
 
   const sendMessageHandler = async () => {
+    toggleMessageSending(true);
     if (!customerMessage.trim()) return;
+    const messageToSend = customerMessage;
+    setCustomerMessage('');
 
-    const response = await sendMessage(customerMessage);
-    const newCustomerMessage: Message = { message: response.customer_message, type: "user" };
+    const newCustomerMessage: Message = {
+      message: messageToSend,
+      type: 'user',
+    };
+    setMessages((prevMessages) => [...prevMessages, newCustomerMessage]);
 
-    setMessages([...messages, newCustomerMessage]);
-    setCustomerMessage("");
+    const response = await sendMessage(messageToSend);
+
+    const newBotMessage: Message = { message: response.message, type: 'bot' };
+    setMessages((prevMessages) => [...prevMessages, newBotMessage]);
+
+    toggleMessageSending(false);
   };
 
   return (
@@ -107,7 +122,7 @@ export default function ChatClient({ bots: initialBots, messages: initialMessage
         className={`
           flex flex-col rounded-xl shadow-xl bg-white transform transition-all duration-300 ease-in-out
           min-h-[300px] overflow-hidden border border-gray-200
-          ${isChatOpen ? "opacity-100 scale-100 max-h-[500px]" : "opacity-0 scale-95 max-h-0"}
+          ${isChatOpen ? 'opacity-100 scale-100 max-h-[500px]' : 'opacity-0 scale-95 max-h-0'}
         `}
       >
         {isChatOpen && (
@@ -125,6 +140,7 @@ export default function ChatClient({ bots: initialBots, messages: initialMessage
               value={customerMessage}
               onChange={setCustomerMessage}
               onSend={sendMessageHandler}
+              messageSending={messageSending}
             />
           </>
         )}

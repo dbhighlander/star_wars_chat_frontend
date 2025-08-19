@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import { Message } from "@/app/types/types";
-import MessageItem from "./message-item";
+import { useEffect, useRef } from 'react';
+import { Message } from '@/app/types/types';
+import MessageItem from './message-item';
 
 interface Props {
   messages: Message[];

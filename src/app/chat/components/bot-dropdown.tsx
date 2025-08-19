@@ -1,7 +1,7 @@
 // components/BotDropdown.tsx
-import Image from "next/image";
-import { Bot } from "@/app/types/types";
-import { getImageFromBotSlug } from "@/app/utils/getImageFromBotSlug";
+import Image from 'next/image';
+import { Bot } from '@/app/types/types';
+import { getImageFromBotSlug } from '@/app/utils/getImageFromBotSlug';
 
 interface Props {
   bots: Bot[];

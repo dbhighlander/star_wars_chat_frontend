@@ -1,8 +1,8 @@
 // components/ChatHeader.tsx
-import Image from "next/image";
-import { Bot } from "@/app/types/types";
-import { getImageFromBotSlug } from "@/app/utils/getImageFromBotSlug";
-import BotDropdown from "./bot-dropdown";
+import Image from 'next/image';
+import { Bot } from '@/app/types/types';
+import { getImageFromBotSlug } from '@/app/utils/getImageFromBotSlug';
+import BotDropdown from './bot-dropdown';
 
 interface Props {
   activeBot: Bot;
@@ -21,8 +21,6 @@ export default function ChatHeader({
   onToggleDropdown,
   onClose,
 }: Props) {
-
-
   return (
     <div className="flex items-center justify-between p-4 bg-gray-50 border-b border-gray-200 relative">
       <button

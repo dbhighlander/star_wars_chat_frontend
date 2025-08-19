@@ -1,18 +1,16 @@
-import yodaImg from "../bot_avatars/yoda.webp";
-import darkHelmetImg from "../bot_avatars/dark_helmet.png";
-import darthVaderImg from "../bot_avatars/darth_vader.jpg";
+import yodaImg from '../bot_avatars/yoda.webp';
+import darkHelmetImg from '../bot_avatars/dark_helmet.png';
+import darthVaderImg from '../bot_avatars/darth_vader.jpg';
 
 export const getImageFromBotSlug = (slug: string) => {
-    console.log(slug)
-  switch(slug) {
-    case "yoda":
+  switch (slug) {
+    case 'yoda':
       return yodaImg;
-    case "dark_helmet":
+    case 'dark_helmet':
       return darkHelmetImg;
-    case "darth_vader":
+    case 'darth_vader':
       return darthVaderImg;
     default:
-      return "/bot_avatars/default.png"; // fallback image
+      return '/bot_avatars/default.png'; // fallback image
   }
 };
-

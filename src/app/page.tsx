@@ -1,10 +1,6 @@
 import Chat from './chat/chat';
-import { fetchBots } from './lib/fetchBots';
 
 export default async function Home() {
-
-  
-
   return (
     <div className="font-sans min-h-screen flex flex-col bg-white">
       {/* Main content */}
