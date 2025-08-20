@@ -4,7 +4,7 @@ export async function assignBotToChat(botSlug: string) {
   const chatCookieData = getChatDataFromCookie();
   try {
     const response = await fetch(
-      `http://localhost:8081/chats/switch_bot/${botSlug}/${chatCookieData.c}`,
+      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/chats/switch_bot/${botSlug}/${chatCookieData.c}`,
       {
         method: 'GET',
       }

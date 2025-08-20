@@ -1,6 +1,6 @@
 export async function fetchBots() {
   try {
-    const response = await fetch('http://localhost:8081/bots', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/bots`, {
       method: 'GET',
     });
 

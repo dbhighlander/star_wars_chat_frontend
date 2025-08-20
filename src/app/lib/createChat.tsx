@@ -4,7 +4,7 @@ import { storeChatDataToCookie } from '../utils/cookies';
 export async function createChat(botSlug: string) {
   try {
     const response = await fetch(
-      `http://localhost:8081/chats/create/${botSlug}`,
+      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/chats/create/${botSlug}`,
       {
         method: 'GET',
       }

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 export async function fetchChat(userRef: string, chatRef: string) {
   try {
     const response = await fetch(
-      `http://localhost:8081/chats/${userRef}/${chatRef}`,
+      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/${userRef}/${chatRef}`,
       {
         method: 'GET',
       }

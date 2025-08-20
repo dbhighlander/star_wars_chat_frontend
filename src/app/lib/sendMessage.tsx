@@ -4,7 +4,7 @@ export async function sendMessage(message) {
   const chatCookieData = getChatDataFromCookie();
   try {
     const response = await fetch(
-      `http://localhost:8081/message/${chatCookieData.c}`,
+      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/message/${chatCookieData.c}`,
       {
         method: 'POST',
         body: JSON.stringify({ message }),
