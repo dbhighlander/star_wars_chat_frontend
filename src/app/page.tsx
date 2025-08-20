@@ -9,15 +9,31 @@ export default async function Home() {
         <div className="w-2/3  overflow-auto box-border">
           <div className="p-4">
             <h1 className="text-xl font-bold">Star Wars Chat</h1>
-            <p>
-              This page demonstrates how chats can be made to Star Wars
-              Characters.
-            </p>
-            <p>
-              The site is structured with a next.js front-end that hooks to a
-              server written in go that queries the chatGPT completions API. The
-              site is hosted entirely in the cloud.
-            </p>
+            <div className='py-8'>
+              <p>
+                This page presents a Chatbot made with Artificial Intelligence where you can chat to different Star Wars Characters.  This is obviously for demo purposes.
+              Try starting a chat by clicking the chat icon in the bottom right.</p>
+              <h2 className='texr-l font-bold mt-4 mb-2'>Tech Details</h2>
+              <p>
+                Cookies are used to keep the current chat going on a page refresh.  Chats are stored in a database held in the cloud. Here are the full technical details of the stack:
+              </p>
+              <ul className='list-disc p-6 pt-2'>
+                <li>The site is structured with a <span className='italic'>NextJS front-end</span> that hooks to a <span className='italic'>go API backend.</span></li> 
+                <li>The AI engine is provided by <span className='italic'>Google Gemini.</span></li>
+                <li>The characters can be toggled in the chat header and this changes the personality. This is done in the AI engine by adjusting prompts.</li>
+                <li>The API is hosted entirely in the cloud on <span className='italic'>fly.io</span> with <span className='italic'>MySQL</span> provided by <span className='italic'>Aiven</span>.</li>
+                <li>Tests are used to check the endpoints on the back-end and rendering of components on the front-end.</li>
+                <li>Deployment is managed through <span className='italic'>GitHub actions</span>.</li>
+                <li>Front-end Github repository: <a className='text-blue-900 font-bold' href='https://github.com/dbhighlander/star_wars_chat_frontend'>link</a></li>
+                <li>Back-end Github repository: <a className='text-blue-900 font-bold' href='https://github.com/dbhighlander/star_wars_chat_backend'>link</a></li>
+              </ul>
+              <h2 className='texr-l font-bold mt-4 mb-2'>Github Repositories</h2>
+              <p>The full repositories are available online:</p>
+              <ul className='list-disc p-6 pt-2'>
+              <li>Front-end Github repository: <a className='text-blue-900 font-700' href='https://github.com/dbhighlander/star_wars_chat_frontend'>link</a></li>
+                <li>Back-end Github repository: <a className='text-blue-900 font-700' href='https://github.com/dbhighlander/star_wars_chat_backend'>link</a></li>
+                </ul>
+            </div>
           </div>
         </div>
 

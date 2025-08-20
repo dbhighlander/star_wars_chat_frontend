@@ -2,9 +2,10 @@ import Cookies from 'js-cookie';
 import { ChatData } from '../types/types';
 
 export async function fetchChat(userRef: string, chatRef: string) {
+
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/${userRef}/${chatRef}`,
+      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/chats/${userRef}/${chatRef}`,
       {
         method: 'GET',
       }
