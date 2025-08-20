@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Bot, Message } from '../types';
+import { Bot, Message } from '../types/types';
 import ChatHeader from './components/chat-header';
 import MessageList from './components/message-list';
 import ChatInput from './components/chat-input';
