@@ -32,8 +32,11 @@ export async function assignBotToChat(botSlug: string) {
 function getChatDataFromCookie() {
   const cookieData = Cookies.get('cd'); // expires in 1 day
   let chatData;
+
   try {
-    chatData = JSON.parse(cookieData);
+    if(typeof cookieData !== "undefined"){
+      chatData = JSON.parse(cookieData);
+    }    
   } catch (err) {
     console.log(err);
   }

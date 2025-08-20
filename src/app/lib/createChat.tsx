@@ -1,4 +1,4 @@
-import { chatData } from '../types/types';
+import { ChatData } from '../types/types';
 import { storeChatDataToCookie } from '../utils/cookies';
 
 export async function createChat(botSlug: string) {
@@ -30,7 +30,7 @@ export async function createChat(botSlug: string) {
   }
 }
 
-function storeChatData(chatData: chatData) {
+function storeChatData(chatData: ChatData) {
   const chatDataCookie = {
     c: chatData.chat_ref,
     u: chatData.user_ref,

@@ -9,12 +9,12 @@ export interface Message {
   message: string;
 }
 
-export interface chatData {
+export interface ChatData {
     user_ref: string,
     chat_ref: string
 }
 
-export interface chatDataCookie {
+export interface ChatDataCookie {
     u: string,
     c: string
 }

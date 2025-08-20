@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { ChatData } from '../types/types';
 
 export async function fetchChat(userRef: string, chatRef: string) {
   try {
@@ -29,7 +30,9 @@ export async function fetchChat(userRef: string, chatRef: string) {
   }
 }
 
-function storeChatDataToCookie(chatData) {
+
+
+function storeChatDataToCookie(chatData: ChatData) {
   const chatDataCookie = {
     c: chatData.chat_ref,
     u: chatData.user_ref,
