@@ -11,7 +11,7 @@ export default async function Home() {
             <h1 className="text-xl font-bold">Star Wars Chat</h1>
             <div className='py-8'>
               <p>
-                This page presents an AI Chatbot where you can chat to different Star Wars Characters.  It's a demo, so try starting a chat by clicking the chat icon in the bottom right.</p>
+                This page presents an AI Chatbot where you can chat to different Star Wars Characters.  It&apos;s a demo, so try starting a chat by clicking the chat icon in the bottom right.</p>
               <h2 className='texr-l font-bold mt-4 mb-2'>Tech Details</h2>
               <p>
                 Cookies are used to keep the current chat going on a page refresh.  Chats are stored in a database held in the cloud. Here are the full technical details of the stack:
