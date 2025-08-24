@@ -7,6 +7,9 @@ export async function sendMessage(message: string) {
       `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/message/${chatCookieData.c}`,
       {
         method: 'POST',
+        headers: {
+          'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
+        },
         body: JSON.stringify({ message }),
       }
     );

@@ -7,6 +7,9 @@ export async function createChat(botSlug: string) {
       `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/chats/create/${botSlug}`,
       {
         method: 'GET',
+        headers: {
+          'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
+        },
       }
     );
 

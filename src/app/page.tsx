@@ -6,13 +6,12 @@ export default async function Home() {
       {/* Main content */}
       <main className="flex flex-1 flex-row w-full gap-8 ">
         {/* Left main content */}
-        <div className="w-2/3  overflow-auto box-border">
+        <div className="w-[100%] md-w-2/3 overflow-auto box-border">
           <div className="p-4">
             <h1 className="text-xl font-bold">Star Wars Chat</h1>
             <div className='py-8'>
               <p>
-                This page presents a Chatbot made with Artificial Intelligence where you can chat to different Star Wars Characters.  This is obviously for demo purposes.
-              Try starting a chat by clicking the chat icon in the bottom right.</p>
+                This page presents an AI Chatbot where you can chat to different Star Wars Characters.  It's a demo, so try starting a chat by clicking the chat icon in the bottom right.</p>
               <h2 className='texr-l font-bold mt-4 mb-2'>Tech Details</h2>
               <p>
                 Cookies are used to keep the current chat going on a page refresh.  Chats are stored in a database held in the cloud. Here are the full technical details of the stack:
@@ -24,6 +23,7 @@ export default async function Home() {
                 <li>The API is hosted entirely in the cloud on <span className='italic'>fly.io</span> with <span className='italic'>MySQL</span> provided by <span className='italic'>Aiven</span>.</li>
                 <li>Tests are used to check the endpoints on the back-end and rendering of components on the front-end.</li>
                 <li>Deployment is managed through <span className='italic'>GitHub actions</span>.</li>
+                <li>API requests are authenticated using an API key, but this should be better secured in production.</li>
               </ul>
               <h2 className='texr-l font-bold mt-4 mb-2'>Github Repositories</h2>
               <p>The full repositories are available online:</p>

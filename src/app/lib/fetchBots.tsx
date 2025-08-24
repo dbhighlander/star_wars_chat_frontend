@@ -3,7 +3,10 @@ export async function fetchBots() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/bots`, {
       method: 'GET',
-    });
+      headers: {
+        'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
+      },
+  });
 
     if (!response.ok) {
       // Check for non-200 status
