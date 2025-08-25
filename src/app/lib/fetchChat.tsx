@@ -9,7 +9,7 @@ export async function fetchChat(userRef: string, chatRef: string) {
       {
         method: 'GET',
         headers: {
-          'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
+          'X-API-Key': process.env.API_KEY!, // your API key from env
         },
       }
     );

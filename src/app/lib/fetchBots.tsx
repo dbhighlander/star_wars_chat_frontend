@@ -1,10 +1,10 @@
 export async function fetchBots() {
-  console.log(`${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/bots`)
+
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/bots`, {
       method: 'GET',
       headers: {
-        'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
+        'X-API-Key': process.env.API_KEY!, // your API key from env
       },
   });
 
