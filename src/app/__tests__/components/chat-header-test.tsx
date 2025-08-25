@@ -41,7 +41,7 @@ describe('ChatHeader', () => {
     );
 
     // Test bot name
-    // @ts-expect-error
+    // @ts-expect-error: intentionally ignoring type error in test
     expect(screen.getByText('R2-D2')).toBeInTheDocument();
 
     // Test image src
@@ -85,7 +85,7 @@ describe('ChatHeader', () => {
 
       // Optionally, check that at least one is inside the dropdown
       const dropdownMatch = matches.find(el => el.parentElement?.className.includes('cursor-pointer'));
-      // @ts-expect-error
+      // @ts-expect-error: intentionally ignoring type error in test
       expect(dropdownMatch).toBeInTheDocument();
     });
   });
