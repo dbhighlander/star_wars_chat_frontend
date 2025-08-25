@@ -1,11 +1,17 @@
 // src/app/api/chat/message/[chatRef]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
+interface ChatMessageRouteContext {
+  params: {
+    chatRef: string;
+  };
+}
+
 export async function POST(
   req: NextRequest,
-  { params }: { params: { chatRef: string } }
+  { params }: ChatMessageRouteContext
 ) {
-  const { chatRef } = params; // no await!
+  const { chatRef } = params;
 
   if (!chatRef) {
     return NextResponse.json({ error: 'Missing chatRef' }, { status: 400 });
