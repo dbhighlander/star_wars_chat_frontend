@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(
   req: NextRequest,
   { params }: { params: { chatRef: string } }
-): Promise<NextResponse> {
-  const { chatRef } = params;
+) {
+  const { chatRef } = params; // no await!
 
   if (!chatRef) {
     return NextResponse.json({ error: 'Missing chatRef' }, { status: 400 });
