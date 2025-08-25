@@ -23,7 +23,6 @@ export default async function Home() {
                 <li>The API is hosted entirely in the cloud on <span className='italic'>fly.io</span> with <span className='italic'>MySQL</span> provided by <span className='italic'>Aiven</span>.</li>
                 <li>Tests are used to check the endpoints on the back-end and rendering of components on the front-end.</li>
                 <li>Deployment is managed through <span className='italic'>GitHub actions</span>.</li>
-                <li>API requests are authenticated using an API key, but this should be better secured in production.</li>
               </ul>
               <h2 className='texr-l font-bold mt-4 mb-2'>Github Repositories</h2>
               <p>The full repositories are available online:</p>
