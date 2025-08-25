@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(
   req: NextRequest,
-  context: { params: { chatRef: string } }
+  { params }: { params: { chatRef: string } }
 ): Promise<NextResponse> {
-  const { chatRef } = await context.params;
+  const { chatRef } = params;
 
   if (!chatRef) {
     return NextResponse.json({ error: 'Missing chatRef' }, { status: 400 });
