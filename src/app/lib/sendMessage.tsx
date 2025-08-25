@@ -1,48 +1,43 @@
+'use client'
 import Cookies from 'js-cookie';
 
 export async function sendMessage(message: string) {
   const chatCookieData = getChatDataFromCookie();
+  if (!chatCookieData?.c) return null;
+
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STAR_WARS_PUBLIC_API_URL}/message/${chatCookieData.c}`,
-      {
-        method: 'POST',
-        headers: {
-          'X-API-Key': process.env.NEXT_PUBLIC_API_KEY!, // your API key from env
-        },
-        body: JSON.stringify({ message }),
-      }
-    );
+    const response = await fetch(`/api/chat/message/${chatCookieData.c}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message }),
+    });
 
     if (!response.ok) {
-      // Check for non-200 status
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
     console.log('Message sent:', data.result);
 
-    if (data.result == 'success') {
+    if (data.result === 'success') {
       return data.details;
     } else {
-      console.error("Can't load bots");
+      console.error("Can't send message");
     }
   } catch (error) {
-    console.error('Failed to fetch bots:', error);
+    console.error('Failed to send message:', error);
     return null;
   }
 }
 
 function getChatDataFromCookie() {
   const cookieData = Cookies.get('cd'); // expires in 1 day
-  let chatData;
+  if (!cookieData) return null;
+
   try {
-    if(typeof cookieData !== "undefined"){
-      chatData = JSON.parse(cookieData);
-    }
-    
+    return JSON.parse(cookieData);
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return null;
   }
-  return chatData;
 }
