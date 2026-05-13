@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { Star } from "../types/types";
 
 export default function Background() {
   const [activeScene, setActiveScene] = useState(0);
+  const [stars, setStars] = useState<Star[]>([]);
 
   // Detect which snap section is active
   useEffect(() => {
@@ -33,9 +35,8 @@ export default function Background() {
     return () => observer.disconnect();
   }, []);
 
-  // Generate stars once only
-  const stars = useMemo(() => {
-    return Array.from({ length: 100 }).map(() => {
+  useEffect(() => {
+    const generatedStars = Array.from({ length: 100 }).map(() => {
       const layer = Math.random();
 
       return {
@@ -57,10 +58,11 @@ export default function Background() {
             : Math.random() * 0.6 + 0.3,
 
         duration: Math.random() * 4 + 2,
-        delay: Math.random() * 5,
+        delay: 0,
         layer,
       };
     });
+    setStars(generatedStars);
   }, []);
 
   return (

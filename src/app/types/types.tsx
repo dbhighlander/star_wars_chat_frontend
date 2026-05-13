@@ -10,11 +10,21 @@ export interface Message {
 }
 
 export interface ChatData {
-    user_ref: string,
-    chat_ref: string
+  user_ref: string,
+  chat_ref: string
 }
 
 export interface ChatDataCookie {
-    u: string,
-    c: string
+  u: string,
+  c: string
+}
+
+export type Star = {
+  layer: number,
+  x: number,
+  y: number,
+  size: number,
+  opacity: number,
+  duration: number,
+  delay: number
 }
