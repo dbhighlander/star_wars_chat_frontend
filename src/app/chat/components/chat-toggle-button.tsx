@@ -5,7 +5,7 @@ interface Props {
 export default function ChatToggleButton({ onClick }: Props) {
   return (
     <button
-      className="absolute bottom-0 right-0 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
+      className="absolute bottom-0 right-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
       onClick={onClick}
     >
       <svg

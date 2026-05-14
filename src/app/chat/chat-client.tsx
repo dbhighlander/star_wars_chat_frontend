@@ -116,13 +116,13 @@ export default function ChatClient({
   };
 
   return (
-    <div className="fixed bottom-4 right-4 w-80 z-50 font-sans">
+    <div className="fixed bottom-4 right-4 w-80 z-50 font-sans text-black">
       {/* Chat panel */}
       <div
         className={`
           flex flex-col rounded-xl shadow-xl bg-white transform transition-all duration-300 ease-in-out
           min-h-[300px] overflow-hidden border border-gray-200
-          ${isChatOpen ? 'opacity-100 scale-100 max-h-[500px]' : 'opacity-0 scale-95 max-h-0'}
+          ${isChatOpen ? 'opacity-100 scale-100 max-h-[500px] mr-2' : 'opacity-0 scale-95 max-h-0'}
         `}
       >
         {isChatOpen && (
