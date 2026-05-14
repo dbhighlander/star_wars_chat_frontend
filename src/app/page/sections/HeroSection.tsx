@@ -6,6 +6,7 @@ export default function HeroSection() {
 
   return (
     <section
+      data-index="1"
       ref={ref}
       className="h-screen snap-start flex items-center justify-center"
     >

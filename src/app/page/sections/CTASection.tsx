@@ -6,6 +6,7 @@ export default function CTASection() {
 
   return (
     <section
+      data-index="3"
       ref={ref}
       className="h-screen snap-start flex items-center justify-center"
     >

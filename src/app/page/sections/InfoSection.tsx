@@ -11,6 +11,7 @@ export default function InfoSection() {
 
   return (
     <section
+      data-index="2"
       ref={ref}
       className="h-screen snap-start flex items-center justify-center"
     >
