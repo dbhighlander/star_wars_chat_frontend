@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
  
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function POST(req: NextRequest, context: any) {
-  const { chatRef } = context.params;
+  const { chatRef } = await context.params;
 
   if (!chatRef) {
     return NextResponse.json({ error: 'Missing chatRef' }, { status: 400 });
