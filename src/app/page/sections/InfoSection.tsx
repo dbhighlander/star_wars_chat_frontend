@@ -17,7 +17,7 @@ export default function InfoSection() {
     >
       <div className="text-center max-w-3xl px-6">
 
-        <div className="flex justify-center gap-10 mb-12">
+        <div className="flex justify-center gap-4 md:gap-10 mb-12">
           {bots.map((slug, i) => (
             <div
               key={slug}
@@ -33,7 +33,7 @@ export default function InfoSection() {
                 src={getImageFromBotSlug(slug)}
                 alt="bot avatar"
                 className="
-                  w-32 h-32 md:w-40 md:h-40
+                  w-24 h-24 md:w-40 md:h-40  
                   rounded-full object-cover
                   border border-white/20
                   shadow-[0_0_30px_rgba(255,255,255,0.08)]
