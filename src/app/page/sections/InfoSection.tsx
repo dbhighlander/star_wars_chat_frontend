@@ -13,7 +13,7 @@ export default function InfoSection() {
     <section
       data-index="2"
       ref={ref}
-      className="h-screen snap-start flex items-center justify-center"
+      className="h-dvh snap-start flex items-center justify-center"
     >
       <div className="text-center max-w-3xl px-6">
 

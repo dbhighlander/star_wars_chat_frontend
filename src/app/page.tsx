@@ -11,7 +11,7 @@ export default async function Home() {
     <div className="w-full min-h-screen bg-black text-white">
       <Background />
 
-      <main className="relative z-10 h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <main className="relative z-10 h-dvh overflow-y-scroll snap-y snap-mandatory scroll-smooth">
         
         <HeroSection />
         <InfoSection />

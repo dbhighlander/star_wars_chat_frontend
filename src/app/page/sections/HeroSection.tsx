@@ -8,7 +8,7 @@ export default function HeroSection() {
     <section
       data-index="1"
       ref={ref}
-      className="h-screen snap-start flex items-center justify-center"
+      className="h-dvh snap-start flex items-center justify-center"
     >
       <div
         className={`
